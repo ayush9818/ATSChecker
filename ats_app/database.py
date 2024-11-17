@@ -60,3 +60,5 @@ def create_sqlite_db(database_name="job_portal.db"):
     Session = sessionmaker(bind=engine)
     return Session
 
+def get_db():
+    pass 
