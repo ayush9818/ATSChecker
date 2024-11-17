@@ -27,3 +27,14 @@ class ResumeContent(BaseModel):
     suggested_resume_category: Optional[str] = Field(default=None, description="Suggested Resume Category (based on the skills and experience)") 
     recommended_job_roles: List[str] = Field(default_factory=list, description="Recommended Job Roles (based on the candidate's skills and experience)")
     years_of_experience: Optional[int] = Field(default=None, description="Years of Experience, calculated from work experience")
+
+class ResumeScore(BaseModel):
+    perc_match: int = Field(description="Percentage match between the job description and the resume (0-100)")
+    matching_keywords: List[str] = Field(description="List of important keywords or skills found in both the resume and job description")
+    missing_keywords: List[str] = Field(description="List of important keywords or skills from the job description missing in the resume")
+    improvement_suggestions: List[str] = Field(description="Specific suggestions to improve the resume for better alignment with the job description")
+    profile_summary: str = Field(description="Concise profile summary of the candidate based on their entire resume")
+    top_strengths: List[str] = Field(description="Top 3 strengths of the candidate relevant to the job description")
+    areas_for_improvement: List[str] = Field(description="Top 3 areas for improvement or skills to develop for better job fit")
+    ats_compatibility_score: int = Field(description="Score for how well the resume is formatted for ATS systems (0-100)")
+    experience_level_match: str = Field(description="Assessment of how well the candidate's experience level matches the job requirements")
