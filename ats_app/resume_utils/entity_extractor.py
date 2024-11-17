@@ -10,6 +10,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain.output_parsers import PydanticOutputParser, OutputFixingParser
 from ats_app.models.ai_models import ResumeContent
 from ats_app.resume_utils.prompts import entity_extraction_prompt
+from ats_app.resume_utils.loaders import load_resume_from_docx, load_resume_from_pdf
 
 GOOGLE_API_KEY=os.environ['GEMINI_API_KEY']
 
@@ -30,9 +31,13 @@ def create_entity_extractor_chain(model_name="gemini-1.5-pro"):
     return prompt | llm | new_parser
 
 
-def extract_entities(llm_chain, resume):
-    # Convert to doc if pdf, otherwise process as it is 
-    converted_resume = resume # Add resume conversion code later    
+def extract_entities(llm_chain, file_path):
+    if file_path.endswith('.pdf'):
+        resume_text = load_resume_from_pdf(file_path)
+    elif file_path.endswith('.docx'):
+        resume_text = load_resume_from_docx(file_path)
+    else:
+        raise NotImplementedError(f"Received {file_path}. Currently support .docx and .pdf files")
 
-    extracted_entities = llm_chain.invoke({"resume" : converted_resume})
-    return extract_entities 
+    extracted_entities = llm_chain.invoke({"resume" : resume_text})
+    return extracted_entities 

@@ -1,4 +1,3 @@
-
 """
 Author: Ayush Agarwal
 """
@@ -26,5 +25,5 @@ class ResumeContent(BaseModel):
     education: List[EducationEntry] = Field(default_factory=list, description="List of educational qualifications, where each entry contains details about degree, institution, and dates.")
     work_experience: List[WorkExperienceEntry] = Field(default_factory=list, description="List of work experiences, where each experience include company name, role, start date and end date.")
     suggested_resume_category: Optional[str] = Field(default=None, description="Suggested Resume Category (based on the skills and experience)") 
-    recommendeded_job_roles: List[str] = Field(default_factory=list, description="Recommended Job Roles (based on the candidate's skills and experience)")
+    recommended_job_roles: List[str] = Field(default_factory=list, description="Recommended Job Roles (based on the candidate's skills and experience)")
     years_of_experience: Optional[int] = Field(default=None, description="Years of Experience, calculated from work experience")
