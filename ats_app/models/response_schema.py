@@ -17,6 +17,32 @@ class ResumeAnalysisResponse(BaseModel):
     data: Optional[ResumeScore] = Field(description="Detailed resume analysis results")
 
 class CreateUserRequest(BaseModel):
-    pass
+    name: str
+    email: str
+    contact_number: Optional[str] = None
+
+class UserResponse(BaseModel):
+    user_id: int
+    name: str
+    email: str
+    contact_number: Optional[str] = None
+
+    class Config:
+        orm_mode = True
+
+class CreateJobRequest(BaseModel):
+    job_description: str
+    job_title : str
+    employment_type : str 
+    company_name : str
 
 
+class JobResponse(BaseModel):
+    job_id: int
+    job_description: str
+    job_title : str
+    employment_type : str 
+    company_name : str
+
+    class Config:
+        orm_mode = True

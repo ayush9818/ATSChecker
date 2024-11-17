@@ -9,3 +9,5 @@ langchain
 langchain-community
 unstructured
 sqlalchemy
+uvicorn
+fastapi
