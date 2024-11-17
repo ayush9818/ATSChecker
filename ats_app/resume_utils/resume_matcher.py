@@ -30,7 +30,7 @@ def create_ats_chain(model_name="gemini-1.5-pro"):
 
     return prompt | llm | new_parser
 
-def perform_ats_check(llm_chain, resume_path, job_description):
+def perform_ats_analysis(llm_chain, resume_path, job_description):
     if resume_path.endswith('.pdf'):
         resume_text = load_resume_from_pdf(resume_path)
     elif resume_path.endswith('.docx'):

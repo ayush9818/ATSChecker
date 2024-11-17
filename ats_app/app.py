@@ -7,14 +7,13 @@ from pydantic import BaseModel, Field
 from typing import List, Optional
 from enum import Enum
 
-
 from ats_app.resume_utils.entity_extractor import (
     create_entity_extractor_chain, 
     extract_entities, 
 )
 from ats_app.resume_utils.resume_matcher import (
     create_ats_chain, 
-    perform_ats_check
+    perform_ats_analysis
 )
 from ats_app.models.response_schema import ResumeAnalysisResponse, StatusEnum
 from ats_app.crud import (
@@ -42,7 +41,7 @@ async def analyze_resume(resume_id: str, job_id: str):
         raise HTTPException(status_code=404, detail="Job description not found")
 
     try:
-        analysis_result = await perform_ats_check(resume_path, job_description)
+        analysis_result = await perform_ats_analysis(resume_path, job_description)
 
         return ResumeAnalysisResponse(
             status=StatusEnum.SUCCESS,
@@ -51,6 +50,7 @@ async def analyze_resume(resume_id: str, job_id: str):
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail="An error occurred during resume analysis")
+
 
 if __name__ == "__main__":
     entity_chain = create_entity_extractor_chain()
