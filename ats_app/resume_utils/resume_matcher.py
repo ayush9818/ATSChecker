@@ -15,7 +15,7 @@ from ats_app.resume_utils.loaders import load_resume_from_docx, load_resume_from
 GOOGLE_API_KEY=os.environ['GEMINI_API_KEY']
 
 
-def create_resume_match_chain(model_name="gemini-1.5-pro"):
+def create_ats_chain(model_name="gemini-1.5-pro"):
     llm = GoogleGenerativeAI(model=model_name, 
                             google_api_key=GOOGLE_API_KEY)
     parser = PydanticOutputParser(pydantic_object=ResumeScore)
