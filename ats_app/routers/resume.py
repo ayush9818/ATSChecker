@@ -13,6 +13,7 @@ from pathlib import Path
 import base64
 import boto3
 import json
+from urllib.parse import urlparse
 
 
 from ats_app.database import models
@@ -34,7 +35,19 @@ BUCKET_NAME=os.environ['BUCKET_NAME']
 BUCKET_DIR=os.environ['BUCKET_DIR']
 
 def download_from_s3(s3_path):
-    return None
+    parsed_url = urlparse(s3_path)
+    if not parsed_url.netloc or not parsed_url.path:
+        raise ValueError(f"Invalid S3 URL: {s3_path}")
+    key = parsed_url.path.lstrip("/")
+    s3 = boto3.client("s3")
+    local_file_path = os.path.join(TEMP_DIR, os.path.basename(key))
+
+    try:
+        s3.download_file(BUCKET_NAME, key, local_file_path)
+        print(f"File downloaded to {local_file_path}")
+        return local_file_path
+    except Exception as e:
+        raise e
 
 def upload_to_s3(local_file_path, s3_file_path):
     s3 = boto3.client("s3")
@@ -45,13 +58,21 @@ def upload_to_s3(local_file_path, s3_file_path):
         raise e
 
 
-@router.post("/analyze", response_model=schemas.ResumeAnalysisResponse)
-def analyze_resume(resume_id: str, job_id: str):
-    resume_path = fetch_resume_path(resume_id)
+@router.get("/analyze", response_model=schemas.ResumeAnalysisResponse)
+def analyze_resume(
+    resume_id: int = Query(None, description="Resume ID of the applicant"), 
+    job_id: int = Query(None, description="Job ID of to be analysed"),
+    db: Session = Depends(get_db)
+    ):
+    if resume_id is None or job_id is None:
+        raise HTTPException(
+            status_code=404, detail="resume_id or job_id can not be None")
+
+    resume_path = fetch_resume_path(resume_id, db)
     if not resume_path:
         raise HTTPException(status_code=404, detail="Resume not found")
 
-    job_description = fetch_job_description(job_id)
+    job_description = fetch_job_description(job_id, db)
     if not job_description:
         raise HTTPException(
             status_code=404, detail="Job description not found")
@@ -61,11 +82,15 @@ def analyze_resume(resume_id: str, job_id: str):
         analysis_result = perform_ats_analysis(
             ATS_CHAIN, resume_path, job_description)
 
+        os.remove(resume_path)
+        
         return schemas.ResumeAnalysisResponse(
             status=schemas.StatusEnum.SUCCESS,
             message="Resume analysis completed successfully",
             data=analysis_result
         )
+
+        
     except Exception as e:
         raise HTTPException(
             status_code=500, detail="An error occurred during resume analysis")
@@ -145,6 +170,7 @@ def upload_resume(
 def fetch_resume(
     user_id: int = Query(None, description="Filter by user ID (optional)"),
     resume_id: int = Query(None, description="Filter by resume ID (optional)"),
+    top_k : int = Query(None, description="Find top k resumes sorted by resume_id (descending)"),
     db: Session = Depends(get_db),
 ):
     query = db.query(models.UserResumes)
@@ -153,6 +179,9 @@ def fetch_resume(
         query = query.filter(models.UserResumes.user_id == user_id)
     if resume_id:
         query = query.filter(models.UserResumes.resume_id == resume_id)
+
+    if top_k:
+        query = query.order_by(models.UserResumes.resume_id.desc()).limit(top_k)
 
     results = query.all()
 

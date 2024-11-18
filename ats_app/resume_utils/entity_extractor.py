@@ -14,6 +14,7 @@ from ats_app.resume_utils.loaders import load_resume_from_docx, load_resume_from
 
 GOOGLE_API_KEY=os.environ['GEMINI_API_KEY']
 
+# TODO: Add Better logic to calculate year of experience
 
 def create_entity_extractor_chain(model_name="gemini-1.5-pro"):
     llm = GoogleGenerativeAI(model=model_name, 
