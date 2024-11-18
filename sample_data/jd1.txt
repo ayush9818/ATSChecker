@@ -1,0 +1,32 @@
+About the Challenge We're Tackling:
+
+As enterprises integrate LLMs into their existing applications, traditional observability tools fall short in addressing the unique safety and operational risks posed by LLM interactions. These tools are adept at monitoring conventional metrics like rate limits, latency, and cost breakdowns but lack the capacity to assess the stochastic risks inherent in LLM inputs, outputs, and inter-LLM communications. This gap represents the primary barrier to confidently deploying LLMs in enterprise settings. At ThirdLaw, we empower IT and Security teams with the tools to answer the foundational question; "Is this OK?" and take decisive action when it isn't. We provide the next-generation monitoring solutions necessary to evaluate, investigate, and mitigate the unique risks associated with LLM deployments.
+
+
+
+About the role
+
+AI is reshaping software development, enterprise knowledge management, and the way work gets done. By giving IT and Security professionals the tools to make sure AI is doing everything it should, and nothing it shouldn’t, you’ll be enabling the safest path to a wave of incredible AI-powered innovation. This role is responsible for selecting, deploying, and monitoring Large Language Models (LLMs) and ML models to support real-time input-output evaluations. In this role, you will develop software that supports continuous LLM evaluation and observability. You will ensure models are well-tuned, compliant, and responsive to real-world inputs.
+
+
+
+What you’ll be doing:
+
+Evaluate and select AI/ML models based on performance, accuracy, and response characteristics for real-time evaluation and decisioning. Identify optimal configurations for different applications and scenarios.
+Deploy, monitor, and maintain LLMs in production to ensure consistent evaluation and feedback loops for inputs and outputs.
+Develop and optimize real-time pipelines for continuous AI agent input-output monitoring, including tools for observing semantic similarity, output appropriateness, and response latency.
+Ensure models are robust, accurate, and compliant with industry standards. Implement real-time performance monitoring, drift detection, and feedback loops for LLMs, ensuring ongoing model quality and compliance.
+
+
+Skills you'll need to bring:
+
+Experience building production-quality ML and AI systems. Experience in MLOps and real-time ML and LLM model deployment and evaluation. Experience with RAG frameworks and Agentic workflows valuable.
+Proven experience deploying and monitoring large language models (e.g., Llama, Mistral, etc.). Improve evaluation accuracy and relevancy using creative, cutting-edge techniques from both industry and new research
+Solid understanding of real-time data processing and monitoring tools for model drift and data validation. Knowledge of observability best practices specific to LLM outputs, including semantic similarity, compliance, and output quality.
+Strong programming skills in Python and familiarity with API-based model serving.
+Experience with LLM management and optimization platforms (e.g., LangChain, Hugging Face).
+Familiarity with data engineering pipelines for real-time input-output logging and analysis.
+Clear ability to own features and products from start to finish. You have worked at a fast-growing start-up or are eager to contribute in such an environment.
+Nice-to-have:
+
+Ideally, you live in the bay area or want to be here enough to collaborate in person sometimes, but we are able to work with anyone in the continental United States.

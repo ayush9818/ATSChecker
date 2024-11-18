@@ -1,0 +1,13 @@
+google-generativeai
+pandas 
+numpy
+matplotlib
+python-dotenv
+langchain-core
+langchain-google-genai
+langchain
+langchain-community
+unstructured
+sqlalchemy
+uvicorn
+fastapi
