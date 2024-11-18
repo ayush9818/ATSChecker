@@ -44,3 +44,7 @@ def create_user(request: schemas.CreateUserRequest, db: Session = Depends(get_db
     db.refresh(new_user)
     print("User Created")
     return new_user
+
+@router.post("/resume/upload")
+def upload_resume():
+    pass

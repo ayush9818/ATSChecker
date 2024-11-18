@@ -46,3 +46,25 @@ class JobResponse(BaseModel):
 
     class Config:
         orm_mode = True
+
+class ApplyJobRequest(BaseModel):
+    user_id: int
+    job_id: int
+    resume_id: int
+
+    class Config:
+        orm_mode = True
+
+class ApplicationResponse(BaseModel):
+    application_id: int
+    user_name: str
+    user_email: str
+    user_contact: Optional[str]
+    job_title: str
+    company_name: str
+    resume_path: str
+    skills: Optional[str]
+    years_of_experience: Optional[int]
+
+    class Config:
+        orm_mode = True

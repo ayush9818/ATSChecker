@@ -3,7 +3,7 @@ Author: Ayush Agarwal
 """
 import os
 from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String, Text, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship, sessionmaker, declarative_base
 
 
@@ -45,6 +45,12 @@ class UserJobs(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     user_id = Column(Integer, ForeignKey('Users.user_id', ondelete="CASCADE"), nullable=False)
     job_id = Column(Integer, ForeignKey('Jobs.job_id', ondelete="CASCADE"), nullable=False)
+    resume_id = Column(Integer, ForeignKey('UserResumes.resume_id', ondelete="CASCADE"), nullable=False)
+
+    # To enforce user apply to one job once
+    __table_args__ = (
+        UniqueConstraint('user_id', 'job_id', name='unique_user_job'),
+    )
 
 
 class UserResumes(Base):
