@@ -1,5 +1,22 @@
 # ATSChecker
 
+## Project Description
+
+**ATSChecker** is an **AI-powered Job Portal** designed to streamline the recruitment process for both recruiters and candidates.
+
+### For Recruiters:
+- **Smart Candidate Shortlisting**: Leverage AI-driven resume insights to identify the most suitable candidates efficiently.
+- **Advanced Filtering**: Apply dynamic filters to shortlist candidates based on skills, experience, and other criteria.
+
+### For Candidates:
+- **Job Applications**: Easily apply for jobs and track application progress.
+- **AI-Powered ATS Checker**: Match your resume against job descriptions to identify key strengths and areas for improvement.
+- **Resume Insights**: Receive actionable suggestions to optimize your resume for Applicant Tracking Systems (ATS).
+
+**ATSChecker** bridges the gap between recruiters and job seekers, offering personalized, data-driven insights to simplify hiring and job hunting.
+
+
+
 ## Project Setup Guide
 
 Follow the steps below to set up and run the **ATSChecker** project:
