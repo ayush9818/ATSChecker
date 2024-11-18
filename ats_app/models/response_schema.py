@@ -68,3 +68,23 @@ class ApplicationResponse(BaseModel):
 
     class Config:
         orm_mode = True
+
+class UploadResumeRequest(BaseModel):
+    user_id: int
+    resume_body: bytes
+    file_name: str
+
+    class Config:
+        orm_mode = True
+
+class ResumeResponse(BaseModel):
+    resume_id: int
+    user_id: int
+    resume_path: str
+    years_of_experience: Optional[int]
+    education: Optional[str]
+    skills: Optional[str]
+    work_experience: Optional[str]
+
+    class Config:
+        orm_mode = True

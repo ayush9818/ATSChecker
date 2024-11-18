@@ -3,7 +3,7 @@ Author: Ayush Agarwal
 """
 import os
 from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String, Text, ForeignKey, UniqueConstraint
+from sqlalchemy import Column, Integer, String, Text, ForeignKey, UniqueConstraint, JSON
 from sqlalchemy.orm import relationship, sessionmaker, declarative_base
 
 
@@ -60,9 +60,9 @@ class UserResumes(Base):
     user_id = Column(Integer, ForeignKey('Users.user_id', ondelete="CASCADE"), nullable=False)
     resume_path = Column(String(512), nullable=False)
     years_of_experience = Column(Integer, nullable=True)
-    college = Column(String(255), nullable=True)
+    education = Column(Text, nullable=True)
     skills = Column(Text, nullable=True)
-    misc = Column(Text, nullable=True)
+    work_experience = Column(Text, nullable=True)
 
     # Relationships
     user = relationship("Users", back_populates="resumes")
