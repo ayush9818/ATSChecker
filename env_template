@@ -1,0 +1,3 @@
+GEMINI_API_KEY=<CREATE_API_KEY_FROM_GEMINI_PORTAL>
+DATABASE_URI="sqlite:///job_portal.db"
+
