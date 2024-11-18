@@ -9,7 +9,7 @@ __pycache__/
 .ner_env
 .venv
 ner-extraction/checkpoints
-
+data/
 # Distribution / packaging
 .Python
 build/
