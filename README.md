@@ -33,6 +33,6 @@ Follow the steps below to set up and run the **ATSChecker** project:
 
 #### **3. Set Up the Frontend**
 
-   Refer to the [backend.md](docs/frontend.md) file for detailed instructions on setting up the frontend service.
+   Refer to the [frontend.md](docs/frontend.md) file for detailed instructions on setting up the frontend service.
 
 
