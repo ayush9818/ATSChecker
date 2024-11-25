@@ -27,5 +27,5 @@ docker build -f Dockerfile -t ats_app_frontend .
 
 Run the backend service in a containerized environment:
 ```bash
-docker run -it --env-file $(pwd)/.env -v $(pwd)/db:/home/data -p 8000:8000 ats_app_frontend
+docker run -it --env-file $(pwd)/.env -p 8080:80 ats_app_frontend
 ```
