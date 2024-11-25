@@ -309,6 +309,96 @@ def show_recruiters_page():
     st.info("Welcome, Recruiters! Here you can analyze ATS data for your recruitment process.")
     st.image("images/app_frontend.jpg", caption="ATS Analysis")
 
+    # Section 1: Post a Job
+    st.subheader("Post a Job")
+    with st.form(key="post_job_form"):
+        job_description = st.text_area("Job Description")
+        job_title = st.text_input("Job Title")
+        employment_type = st.text_input("Employment Type")
+        company_name = st.text_input("Company Name")
+        submit_job = st.form_submit_button("Post Job")
+    
+    if submit_job:
+        if job_description and job_title and employment_type and company_name:
+            post_data = {
+                "job_description": job_description,
+                "job_title": job_title,
+                "employment_type": employment_type,
+                "company_name": company_name,
+            }
+            # Use api_handler.post to send the data
+            response = st.session_state["api_handler"].post("jobs/", post_data)
+            if response.status_code == 200:
+                st.success("Job posted successfully!")
+            else:
+                st.error(f"Failed to post job. Error: {response.text}")
+        else:
+            st.warning("Please fill all fields to post a job.")
+
+    # Section 2: Get Applicant Count
+    st.subheader("Get Applicant Count for a Job")
+    job_id_for_count = st.text_input("Enter Job ID to get applicant count")
+    if st.button("Get Applicant Count"):
+        if job_id_for_count:
+            # Use api_handler.get to fetch the applicant count
+            response = st.session_state["api_handler"].get("jobs/applications/count", {"job_id": job_id_for_count})
+            if response.status_code == 200:
+                count = response.json().get("applicant_count", 0)
+                st.success(f"Number of applicants: {count}")
+            else:
+                st.error(f"Failed to fetch applicant count. Error: {response.text}")
+        else:
+            st.warning("Please enter a Job ID.")
+
+    # Section 3: Filter Candidates
+    st.subheader("Filter Candidates")
+    job_id_filter = st.text_input("Job ID")
+    min_experience = st.number_input("Minimum Years of Experience (optional)", min_value=0, step=1, value=0)
+    skills_filter = st.text_input("Filter by Skills (comma-separated, optional)")
+    if st.button("Filter Candidates"):
+        params = {"job_id": job_id_filter}
+        if min_experience > 0:
+            params["min_experience"] = min_experience
+        if skills_filter:
+            params["skills"] = skills_filter
+        # Use api_handler.get to filter candidates
+        response = st.session_state["api_handler"].get("jobs/applications", params)
+        if response.status_code == 200:
+            candidates = response.json().get("candidates", [])
+            if candidates:
+                st.write("Filtered Candidates:")
+                for candidate in candidates:
+                    st.write(candidate)
+            else:
+                st.info("No candidates found.")
+        else:
+            st.error(f"Failed to filter candidates. Error: {response.text}")
+
+    # Section 4: Fetch Resumes
+    st.subheader("Fetch Resumes")
+    user_id_filter = st.text_input("Filter by User ID (optional)")
+    resume_id_filter = st.text_input("Filter by Resume ID (optional)")
+    top_k_resumes = st.number_input("Find Top K Resumes (sorted by Resume ID, descending)", min_value=1, step=1, value=1)
+    if st.button("Fetch Resumes"):
+        params = {}
+        if user_id_filter:
+            params["user_id"] = user_id_filter
+        if resume_id_filter:
+            params["resume_id"] = resume_id_filter
+        params["top_k"] = top_k_resumes
+        # Use api_handler.get to fetch resumes
+        response = st.session_state["api_handler"].get("resume", params)
+        if response.status_code == 200:
+            resumes = response.json().get("resumes", [])
+            if resumes:
+                st.write("Top Resumes:")
+                for resume in resumes:
+                    st.write(resume)
+            else:
+                st.info("No resumes found.")
+        else:
+            st.error(f"Failed to fetch resumes. Error: {response.text}")
+
 # Function to fetch all jobs
 def fetch_jobs():
     # Fetch all jobs from the API
