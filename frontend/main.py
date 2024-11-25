@@ -334,7 +334,7 @@ def fetch_last_resume_id():
             st.session_state["resume_id"] = None
 
     except Exception as e:
-        st.error(f"Failed to fetch the latest resume: {e}")
+        print(f"Failed to fetch the latest resume: {e}")
         st.session_state["resume_id"] = None
     
 if __name__ == "__main__":
