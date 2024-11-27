@@ -25,4 +25,4 @@ app.include_router(jobs.router, prefix="/jobs")
 app.include_router(resume.router, prefix="/resume")
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0")
+    uvicorn.run(app, host="0.0.0.0", timeout_keep_alive=240)

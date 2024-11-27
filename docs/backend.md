@@ -36,7 +36,19 @@ Run the backend service in a containerized environment:
 docker run -it --env-file $(pwd)/.env -v $(pwd)/db:/home/data -p 8000:8000 ats_app_backend
 ```
 
-**5. Create Dummy Data (Optional)**
+**5. Push docker image to ECR**
+
+```bash
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 911167903346.dkr.ecr.us-east-1.amazonaws.com
+
+docker tag ats_app_backend:latest 911167903346.dkr.ecr.us-east-1.amazonaws.com/ats-app-backend:latest
+
+docker push 911167903346.dkr.ecr.us-east-1.amazonaws.com/ats-app-backend:latest
+```
+
+
+
+**6. Create Dummy Data (Optional)**
 
 To populate the database with sample data, run the following scripts:
 ```bash

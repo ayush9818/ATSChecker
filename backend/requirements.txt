@@ -13,3 +13,4 @@ uvicorn
 fastapi
 faker
 boto3
+pymysql
