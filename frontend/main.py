@@ -84,17 +84,16 @@ def show_applicants_page():
     # User input fields
     name = st.text_input("Your Name (*)")
     email = st.text_input("Your Email (*)")
-    contact = st.text_input("Your Contact (*)")
 
     # Submit button for user information
     if st.button("Submit"):
-        if name and email and contact:
+        if name and email:
             if not is_valid_email(email):
                 st.error("Invalid email address. Please provide a valid email.")
             else:
                 try:
                     # Attempt to register a new user
-                    user_data = {"name": name, "email": email, "contact": contact}
+                    user_data = {"name": name, "email": email}
                     response = st.session_state["api_handler"].post("users/", user_data)
 
                     if response.status_code == 200:
