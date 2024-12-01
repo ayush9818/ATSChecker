@@ -27,5 +27,15 @@ docker build -f Dockerfile -t ats_app_frontend .
 
 Run the backend service in a containerized environment:
 ```bash
-docker run -it --env-file $(pwd)/.env -p 8080:80 ats_app_frontend
+docker run -it --env-file $(pwd)/.env -p 8001:8001 ats_app_frontend
+```
+
+**5. Push the image to ECR**
+
+```bash
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 911167903346.dkr.ecr.us-east-1.amazonaws.com
+
+docker tag ats_app_frontend:latest 911167903346.dkr.ecr.us-east-1.amazonaws.com/ats-app-frontend:latest
+
+docker push 911167903346.dkr.ecr.us-east-1.amazonaws.com/ats-app-frontend:latest
 ```
