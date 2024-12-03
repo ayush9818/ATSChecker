@@ -1,6 +1,6 @@
 # ATSChecker
 
-## Project Description
+## Overview
 
 **ATSChecker** is an **AI-powered Job Portal** designed to streamline the recruitment process for both recruiters and candidates.
 
@@ -14,6 +14,18 @@
 - **Resume Insights**: Receive actionable suggestions to optimize your resume for Applicant Tracking Systems (ATS).
 
 **ATSChecker** bridges the gap between recruiters and job seekers, offering personalized, data-driven insights to simplify hiring and job hunting.
+
+## Implementation Details
+
+### Database Design
+
+
+![db_design](assets/database-schema.png)
+
+### Cloud Architecture 
+![cloud_arch](assets/architecture.png)
+
+
 
 
 

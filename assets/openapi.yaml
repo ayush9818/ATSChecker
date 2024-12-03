@@ -1,0 +1,1480 @@
+
+"openapi": "3.1.0"
+"info":
+  "title": "FastAPI"
+  "version": "0.1.0"
+"paths":
+  "/":
+    "get":
+      "summary": "Root"
+      "operationId": "root__get"
+      "responses":
+        "200":
+          "description": "Successful Response"
+          "content":
+            "application/json":
+              "schema": {}
+  "/users/":
+    "get":
+      "tags":
+        - "users"
+      "summary": "Fetch Users"
+      "operationId": "fetch_users_users__get"
+      "parameters":
+        -
+          "name": "user_id"
+          "in": "query"
+          "required": false
+          "schema":
+            "anyOf":
+              -
+                "type": "integer"
+              -
+                "type": "null"
+            "description": "Filter by user ID"
+            "title": "User Id"
+          "description": "Filter by user ID"
+        -
+          "name": "name"
+          "in": "query"
+          "required": false
+          "schema":
+            "anyOf":
+              -
+                "type": "string"
+              -
+                "type": "null"
+            "description": "Filter by user name"
+            "title": "Name"
+          "description": "Filter by user name"
+        -
+          "name": "email"
+          "in": "query"
+          "required": false
+          "schema":
+            "anyOf":
+              -
+                "type": "string"
+              -
+                "type": "null"
+            "description": "Filter by user email"
+            "title": "Email"
+          "description": "Filter by user email"
+      "responses":
+        "200":
+          "description": "Successful Response"
+          "content":
+            "application/json":
+              "schema":
+                "type": "array"
+                "items":
+                  "properties":
+                    "user_id":
+                      "type": "integer"
+                      "title": "User Id"
+                    "name":
+                      "type": "string"
+                      "title": "Name"
+                    "email":
+                      "type": "string"
+                      "title": "Email"
+                    "contact_number":
+                      "anyOf":
+                        -
+                          "type": "string"
+                        -
+                          "type": "null"
+                      "title": "Contact Number"
+                  "type": "object"
+                  "required":
+                    - "user_id"
+                    - "name"
+                    - "email"
+                  "title": "UserResponse"
+                "title": "Response Fetch Users Users  Get"
+        "422":
+          "description": "Validation Error"
+          "content":
+            "application/json":
+              "schema":
+                "properties":
+                  "detail":
+                    "items":
+                      "properties":
+                        "loc":
+                          "items":
+                            "anyOf":
+                              -
+                                "type": "string"
+                              -
+                                "type": "integer"
+                          "type": "array"
+                          "title": "Location"
+                        "msg":
+                          "type": "string"
+                          "title": "Message"
+                        "type":
+                          "type": "string"
+                          "title": "Error Type"
+                      "type": "object"
+                      "required":
+                        - "loc"
+                        - "msg"
+                        - "type"
+                      "title": "ValidationError"
+                    "type": "array"
+                    "title": "Detail"
+                "type": "object"
+                "title": "HTTPValidationError"
+    "post":
+      "tags":
+        - "users"
+      "summary": "Create User"
+      "operationId": "create_user_users__post"
+      "requestBody":
+        "required": true
+        "content":
+          "application/json":
+            "schema":
+              "properties":
+                "name":
+                  "type": "string"
+                  "title": "Name"
+                "email":
+                  "type": "string"
+                  "title": "Email"
+                "contact_number":
+                  "anyOf":
+                    -
+                      "type": "string"
+                    -
+                      "type": "null"
+                  "title": "Contact Number"
+              "type": "object"
+              "required":
+                - "name"
+                - "email"
+              "title": "CreateUserRequest"
+      "responses":
+        "200":
+          "description": "Successful Response"
+          "content":
+            "application/json":
+              "schema":
+                "properties":
+                  "user_id":
+                    "type": "integer"
+                    "title": "User Id"
+                  "name":
+                    "type": "string"
+                    "title": "Name"
+                  "email":
+                    "type": "string"
+                    "title": "Email"
+                  "contact_number":
+                    "anyOf":
+                      -
+                        "type": "string"
+                      -
+                        "type": "null"
+                    "title": "Contact Number"
+                "type": "object"
+                "required":
+                  - "user_id"
+                  - "name"
+                  - "email"
+                "title": "UserResponse"
+        "422":
+          "description": "Validation Error"
+          "content":
+            "application/json":
+              "schema":
+                "properties":
+                  "detail":
+                    "items":
+                      "properties":
+                        "loc":
+                          "items":
+                            "anyOf":
+                              -
+                                "type": "string"
+                              -
+                                "type": "integer"
+                          "type": "array"
+                          "title": "Location"
+                        "msg":
+                          "type": "string"
+                          "title": "Message"
+                        "type":
+                          "type": "string"
+                          "title": "Error Type"
+                      "type": "object"
+                      "required":
+                        - "loc"
+                        - "msg"
+                        - "type"
+                      "title": "ValidationError"
+                    "type": "array"
+                    "title": "Detail"
+                "type": "object"
+                "title": "HTTPValidationError"
+  "/jobs/":
+    "get":
+      "tags":
+        - "jobs"
+      "summary": "Fetch Jobs"
+      "operationId": "fetch_jobs_jobs__get"
+      "parameters":
+        -
+          "name": "job_id"
+          "in": "query"
+          "required": false
+          "schema":
+            "anyOf":
+              -
+                "type": "integer"
+              -
+                "type": "null"
+            "description": "Filter by job ID"
+            "title": "Job Id"
+          "description": "Filter by job ID"
+        -
+          "name": "job_title"
+          "in": "query"
+          "required": false
+          "schema":
+            "anyOf":
+              -
+                "type": "string"
+              -
+                "type": "null"
+            "description": "Filter by job Title"
+            "title": "Job Title"
+          "description": "Filter by job Title"
+        -
+          "name": "employment_type"
+          "in": "query"
+          "required": false
+          "schema":
+            "anyOf":
+              -
+                "type": "string"
+              -
+                "type": "null"
+            "description": "Filter by Employment Type"
+            "title": "Employment Type"
+          "description": "Filter by Employment Type"
+        -
+          "name": "company_name"
+          "in": "query"
+          "required": false
+          "schema":
+            "anyOf":
+              -
+                "type": "string"
+              -
+                "type": "null"
+            "description": "Filter by Company Name"
+            "title": "Company Name"
+          "description": "Filter by Company Name"
+      "responses":
+        "200":
+          "description": "Successful Response"
+          "content":
+            "application/json":
+              "schema":
+                "type": "array"
+                "items":
+                  "properties":
+                    "job_id":
+                      "type": "integer"
+                      "title": "Job Id"
+                    "job_description":
+                      "type": "string"
+                      "title": "Job Description"
+                    "job_title":
+                      "type": "string"
+                      "title": "Job Title"
+                    "employment_type":
+                      "type": "string"
+                      "title": "Employment Type"
+                    "company_name":
+                      "type": "string"
+                      "title": "Company Name"
+                  "type": "object"
+                  "required":
+                    - "job_id"
+                    - "job_description"
+                    - "job_title"
+                    - "employment_type"
+                    - "company_name"
+                  "title": "JobResponse"
+                "title": "Response Fetch Jobs Jobs  Get"
+        "422":
+          "description": "Validation Error"
+          "content":
+            "application/json":
+              "schema":
+                "properties":
+                  "detail":
+                    "items":
+                      "properties":
+                        "loc":
+                          "items":
+                            "anyOf":
+                              -
+                                "type": "string"
+                              -
+                                "type": "integer"
+                          "type": "array"
+                          "title": "Location"
+                        "msg":
+                          "type": "string"
+                          "title": "Message"
+                        "type":
+                          "type": "string"
+                          "title": "Error Type"
+                      "type": "object"
+                      "required":
+                        - "loc"
+                        - "msg"
+                        - "type"
+                      "title": "ValidationError"
+                    "type": "array"
+                    "title": "Detail"
+                "type": "object"
+                "title": "HTTPValidationError"
+    "post":
+      "tags":
+        - "jobs"
+      "summary": "Create Job"
+      "operationId": "create_job_jobs__post"
+      "requestBody":
+        "required": true
+        "content":
+          "application/json":
+            "schema":
+              "properties":
+                "job_description":
+                  "type": "string"
+                  "title": "Job Description"
+                "job_title":
+                  "type": "string"
+                  "title": "Job Title"
+                "employment_type":
+                  "type": "string"
+                  "title": "Employment Type"
+                "company_name":
+                  "type": "string"
+                  "title": "Company Name"
+              "type": "object"
+              "required":
+                - "job_description"
+                - "job_title"
+                - "employment_type"
+                - "company_name"
+              "title": "CreateJobRequest"
+      "responses":
+        "200":
+          "description": "Successful Response"
+          "content":
+            "application/json":
+              "schema":
+                "properties":
+                  "job_id":
+                    "type": "integer"
+                    "title": "Job Id"
+                  "job_description":
+                    "type": "string"
+                    "title": "Job Description"
+                  "job_title":
+                    "type": "string"
+                    "title": "Job Title"
+                  "employment_type":
+                    "type": "string"
+                    "title": "Employment Type"
+                  "company_name":
+                    "type": "string"
+                    "title": "Company Name"
+                "type": "object"
+                "required":
+                  - "job_id"
+                  - "job_description"
+                  - "job_title"
+                  - "employment_type"
+                  - "company_name"
+                "title": "JobResponse"
+        "422":
+          "description": "Validation Error"
+          "content":
+            "application/json":
+              "schema":
+                "properties":
+                  "detail":
+                    "items":
+                      "properties":
+                        "loc":
+                          "items":
+                            "anyOf":
+                              -
+                                "type": "string"
+                              -
+                                "type": "integer"
+                          "type": "array"
+                          "title": "Location"
+                        "msg":
+                          "type": "string"
+                          "title": "Message"
+                        "type":
+                          "type": "string"
+                          "title": "Error Type"
+                      "type": "object"
+                      "required":
+                        - "loc"
+                        - "msg"
+                        - "type"
+                      "title": "ValidationError"
+                    "type": "array"
+                    "title": "Detail"
+                "type": "object"
+                "title": "HTTPValidationError"
+  "/jobs/apply":
+    "post":
+      "tags":
+        - "jobs"
+      "summary": "Apply For Job"
+      "operationId": "apply_for_job_jobs_apply_post"
+      "requestBody":
+        "content":
+          "application/json":
+            "schema":
+              "properties":
+                "user_id":
+                  "type": "integer"
+                  "title": "User Id"
+                "job_id":
+                  "type": "integer"
+                  "title": "Job Id"
+                "resume_id":
+                  "type": "integer"
+                  "title": "Resume Id"
+              "type": "object"
+              "required":
+                - "user_id"
+                - "job_id"
+                - "resume_id"
+              "title": "ApplyJobRequest"
+        "required": true
+      "responses":
+        "200":
+          "description": "Successful Response"
+          "content":
+            "application/json":
+              "schema":
+                "type": "object"
+                "title": "Response Apply For Job Jobs Apply Post"
+        "422":
+          "description": "Validation Error"
+          "content":
+            "application/json":
+              "schema":
+                "properties":
+                  "detail":
+                    "items":
+                      "properties":
+                        "loc":
+                          "items":
+                            "anyOf":
+                              -
+                                "type": "string"
+                              -
+                                "type": "integer"
+                          "type": "array"
+                          "title": "Location"
+                        "msg":
+                          "type": "string"
+                          "title": "Message"
+                        "type":
+                          "type": "string"
+                          "title": "Error Type"
+                      "type": "object"
+                      "required":
+                        - "loc"
+                        - "msg"
+                        - "type"
+                      "title": "ValidationError"
+                    "type": "array"
+                    "title": "Detail"
+                "type": "object"
+                "title": "HTTPValidationError"
+  "/jobs/applicants/count":
+    "get":
+      "tags":
+        - "jobs"
+      "summary": "Get Applicant Count"
+      "operationId": "get_applicant_count_jobs_applicants_count_get"
+      "parameters":
+        -
+          "name": "job_id"
+          "in": "query"
+          "required": true
+          "schema":
+            "type": "integer"
+            "description": "Job ID to calculate the number of applicants"
+            "title": "Job Id"
+          "description": "Job ID to calculate the number of applicants"
+      "responses":
+        "200":
+          "description": "Successful Response"
+          "content":
+            "application/json":
+              "schema":
+                "type": "object"
+                "title": "Response Get Applicant Count Jobs Applicants Count Get"
+        "422":
+          "description": "Validation Error"
+          "content":
+            "application/json":
+              "schema":
+                "properties":
+                  "detail":
+                    "items":
+                      "properties":
+                        "loc":
+                          "items":
+                            "anyOf":
+                              -
+                                "type": "string"
+                              -
+                                "type": "integer"
+                          "type": "array"
+                          "title": "Location"
+                        "msg":
+                          "type": "string"
+                          "title": "Message"
+                        "type":
+                          "type": "string"
+                          "title": "Error Type"
+                      "type": "object"
+                      "required":
+                        - "loc"
+                        - "msg"
+                        - "type"
+                      "title": "ValidationError"
+                    "type": "array"
+                    "title": "Detail"
+                "type": "object"
+                "title": "HTTPValidationError"
+  "/jobs/applications":
+    "get":
+      "tags":
+        - "jobs"
+      "summary": "Get User Applications"
+      "operationId": "get_user_applications_jobs_applications_get"
+      "parameters":
+        -
+          "name": "user_id"
+          "in": "query"
+          "required": false
+          "schema":
+            "type": "integer"
+            "description": "Filter by user ID"
+            "title": "User Id"
+          "description": "Filter by user ID"
+        -
+          "name": "job_id"
+          "in": "query"
+          "required": false
+          "schema":
+            "type": "integer"
+            "description": "Filter by job ID"
+            "title": "Job Id"
+          "description": "Filter by job ID"
+        -
+          "name": "years_of_experience"
+          "in": "query"
+          "required": false
+          "schema":
+            "type": "integer"
+            "description": "Minimum years of experience (optional)"
+            "title": "Years Of Experience"
+          "description": "Minimum years of experience (optional)"
+        -
+          "name": "skills"
+          "in": "query"
+          "required": false
+          "schema":
+            "type": "array"
+            "items":
+              "type": "string"
+            "description": "Filter by skills (comma-separated, optional)"
+            "title": "Skills"
+          "description": "Filter by skills (comma-separated, optional)"
+      "responses":
+        "200":
+          "description": "Successful Response"
+          "content":
+            "application/json":
+              "schema":
+                "type": "array"
+                "items":
+                  "properties":
+                    "application_id":
+                      "type": "integer"
+                      "title": "Application Id"
+                    "user_name":
+                      "type": "string"
+                      "title": "User Name"
+                    "user_email":
+                      "type": "string"
+                      "title": "User Email"
+                    "user_contact":
+                      "anyOf":
+                        -
+                          "type": "string"
+                        -
+                          "type": "null"
+                      "title": "User Contact"
+                    "job_title":
+                      "type": "string"
+                      "title": "Job Title"
+                    "company_name":
+                      "type": "string"
+                      "title": "Company Name"
+                    "resume_path":
+                      "type": "string"
+                      "title": "Resume Path"
+                    "skills":
+                      "anyOf":
+                        -
+                          "type": "string"
+                        -
+                          "type": "null"
+                      "title": "Skills"
+                    "years_of_experience":
+                      "anyOf":
+                        -
+                          "type": "integer"
+                        -
+                          "type": "null"
+                      "title": "Years Of Experience"
+                  "type": "object"
+                  "required":
+                    - "application_id"
+                    - "user_name"
+                    - "user_email"
+                    - "user_contact"
+                    - "job_title"
+                    - "company_name"
+                    - "resume_path"
+                    - "skills"
+                    - "years_of_experience"
+                  "title": "ApplicationResponse"
+                "title": "Response Get User Applications Jobs Applications Get"
+        "422":
+          "description": "Validation Error"
+          "content":
+            "application/json":
+              "schema":
+                "properties":
+                  "detail":
+                    "items":
+                      "properties":
+                        "loc":
+                          "items":
+                            "anyOf":
+                              -
+                                "type": "string"
+                              -
+                                "type": "integer"
+                          "type": "array"
+                          "title": "Location"
+                        "msg":
+                          "type": "string"
+                          "title": "Message"
+                        "type":
+                          "type": "string"
+                          "title": "Error Type"
+                      "type": "object"
+                      "required":
+                        - "loc"
+                        - "msg"
+                        - "type"
+                      "title": "ValidationError"
+                    "type": "array"
+                    "title": "Detail"
+                "type": "object"
+                "title": "HTTPValidationError"
+  "/resume/analyze":
+    "get":
+      "tags":
+        - "resume"
+      "summary": "Analyze Resume"
+      "operationId": "analyze_resume_resume_analyze_get"
+      "parameters":
+        -
+          "name": "resume_id"
+          "in": "query"
+          "required": false
+          "schema":
+            "type": "integer"
+            "description": "Resume ID of the applicant"
+            "title": "Resume Id"
+          "description": "Resume ID of the applicant"
+        -
+          "name": "job_id"
+          "in": "query"
+          "required": false
+          "schema":
+            "type": "integer"
+            "description": "Job ID of to be analysed"
+            "title": "Job Id"
+          "description": "Job ID of to be analysed"
+      "responses":
+        "200":
+          "description": "Successful Response"
+          "content":
+            "application/json":
+              "schema":
+                "properties":
+                  "status":
+                    "type": "string"
+                    "enum":
+                      - "success"
+                      - "error"
+                    "title": "StatusEnum"
+                    "description": "Status of the resume analysis request"
+                  "message":
+                    "type": "string"
+                    "title": "Message"
+                    "description": "Additional information about the analysis process"
+                  "data":
+                    "anyOf":
+                      -
+                        "properties":
+                          "perc_match":
+                            "type": "integer"
+                            "title": "Perc Match"
+                            "description": "Percentage match between the job description and the resume (0-100)"
+                          "matching_keywords":
+                            "items":
+                              "type": "string"
+                            "type": "array"
+                            "title": "Matching Keywords"
+                            "description": "List of important keywords or skills found in both the resume and job description"
+                          "missing_keywords":
+                            "items":
+                              "type": "string"
+                            "type": "array"
+                            "title": "Missing Keywords"
+                            "description": "List of important keywords or skills from the job description missing in the resume"
+                          "improvement_suggestions":
+                            "items":
+                              "type": "string"
+                            "type": "array"
+                            "title": "Improvement Suggestions"
+                            "description": "Specific suggestions to improve the resume for better alignment with the job description"
+                          "profile_summary":
+                            "type": "string"
+                            "title": "Profile Summary"
+                            "description": "Concise profile summary of the candidate based on their entire resume"
+                          "top_strengths":
+                            "items":
+                              "type": "string"
+                            "type": "array"
+                            "title": "Top Strengths"
+                            "description": "Top 3 strengths of the candidate relevant to the job description"
+                          "areas_for_improvement":
+                            "items":
+                              "type": "string"
+                            "type": "array"
+                            "title": "Areas For Improvement"
+                            "description": "Top 3 areas for improvement or skills to develop for better job fit"
+                          "ats_compatibility_score":
+                            "type": "integer"
+                            "title": "Ats Compatibility Score"
+                            "description": "Score for how well the resume is formatted for ATS systems (0-100)"
+                          "experience_level_match":
+                            "type": "string"
+                            "title": "Experience Level Match"
+                            "description": "Assessment of how well the candidate's experience level matches the job requirements"
+                        "type": "object"
+                        "required":
+                          - "perc_match"
+                          - "matching_keywords"
+                          - "missing_keywords"
+                          - "improvement_suggestions"
+                          - "profile_summary"
+                          - "top_strengths"
+                          - "areas_for_improvement"
+                          - "ats_compatibility_score"
+                          - "experience_level_match"
+                        "title": "ResumeScore"
+                      -
+                        "type": "null"
+                    "description": "Detailed resume analysis results"
+                "type": "object"
+                "required":
+                  - "status"
+                  - "message"
+                  - "data"
+                "title": "ResumeAnalysisResponse"
+        "422":
+          "description": "Validation Error"
+          "content":
+            "application/json":
+              "schema":
+                "properties":
+                  "detail":
+                    "items":
+                      "properties":
+                        "loc":
+                          "items":
+                            "anyOf":
+                              -
+                                "type": "string"
+                              -
+                                "type": "integer"
+                          "type": "array"
+                          "title": "Location"
+                        "msg":
+                          "type": "string"
+                          "title": "Message"
+                        "type":
+                          "type": "string"
+                          "title": "Error Type"
+                      "type": "object"
+                      "required":
+                        - "loc"
+                        - "msg"
+                        - "type"
+                      "title": "ValidationError"
+                    "type": "array"
+                    "title": "Detail"
+                "type": "object"
+                "title": "HTTPValidationError"
+  "/resume/upload":
+    "post":
+      "tags":
+        - "resume"
+      "summary": "Upload Resume"
+      "operationId": "upload_resume_resume_upload_post"
+      "requestBody":
+        "content":
+          "application/json":
+            "schema":
+              "properties":
+                "user_id":
+                  "type": "integer"
+                  "title": "User Id"
+                "resume_body":
+                  "type": "string"
+                  "format": "binary"
+                  "title": "Resume Body"
+                "file_name":
+                  "type": "string"
+                  "title": "File Name"
+              "type": "object"
+              "required":
+                - "user_id"
+                - "resume_body"
+                - "file_name"
+              "title": "UploadResumeRequest"
+        "required": true
+      "responses":
+        "200":
+          "description": "Successful Response"
+          "content":
+            "application/json":
+              "schema": {}
+        "422":
+          "description": "Validation Error"
+          "content":
+            "application/json":
+              "schema":
+                "properties":
+                  "detail":
+                    "items":
+                      "properties":
+                        "loc":
+                          "items":
+                            "anyOf":
+                              -
+                                "type": "string"
+                              -
+                                "type": "integer"
+                          "type": "array"
+                          "title": "Location"
+                        "msg":
+                          "type": "string"
+                          "title": "Message"
+                        "type":
+                          "type": "string"
+                          "title": "Error Type"
+                      "type": "object"
+                      "required":
+                        - "loc"
+                        - "msg"
+                        - "type"
+                      "title": "ValidationError"
+                    "type": "array"
+                    "title": "Detail"
+                "type": "object"
+                "title": "HTTPValidationError"
+  "/resume/":
+    "get":
+      "tags":
+        - "resume"
+      "summary": "Fetch Resume"
+      "operationId": "fetch_resume_resume__get"
+      "parameters":
+        -
+          "name": "user_id"
+          "in": "query"
+          "required": false
+          "schema":
+            "type": "integer"
+            "description": "Filter by user ID (optional)"
+            "title": "User Id"
+          "description": "Filter by user ID (optional)"
+        -
+          "name": "resume_id"
+          "in": "query"
+          "required": false
+          "schema":
+            "type": "integer"
+            "description": "Filter by resume ID (optional)"
+            "title": "Resume Id"
+          "description": "Filter by resume ID (optional)"
+        -
+          "name": "top_k"
+          "in": "query"
+          "required": false
+          "schema":
+            "type": "integer"
+            "description": "Find top k resumes sorted by resume_id (descending)"
+            "title": "Top K"
+          "description": "Find top k resumes sorted by resume_id (descending)"
+      "responses":
+        "200":
+          "description": "Successful Response"
+          "content":
+            "application/json":
+              "schema":
+                "type": "array"
+                "items":
+                  "properties":
+                    "resume_id":
+                      "type": "integer"
+                      "title": "Resume Id"
+                    "user_id":
+                      "type": "integer"
+                      "title": "User Id"
+                    "resume_path":
+                      "type": "string"
+                      "title": "Resume Path"
+                    "years_of_experience":
+                      "anyOf":
+                        -
+                          "type": "integer"
+                        -
+                          "type": "null"
+                      "title": "Years Of Experience"
+                    "education":
+                      "anyOf":
+                        -
+                          "type": "string"
+                        -
+                          "type": "null"
+                      "title": "Education"
+                    "skills":
+                      "anyOf":
+                        -
+                          "type": "string"
+                        -
+                          "type": "null"
+                      "title": "Skills"
+                    "work_experience":
+                      "anyOf":
+                        -
+                          "type": "string"
+                        -
+                          "type": "null"
+                      "title": "Work Experience"
+                  "type": "object"
+                  "required":
+                    - "resume_id"
+                    - "user_id"
+                    - "resume_path"
+                    - "years_of_experience"
+                    - "education"
+                    - "skills"
+                    - "work_experience"
+                  "title": "ResumeResponse"
+                "title": "Response Fetch Resume Resume  Get"
+        "422":
+          "description": "Validation Error"
+          "content":
+            "application/json":
+              "schema":
+                "properties":
+                  "detail":
+                    "items":
+                      "properties":
+                        "loc":
+                          "items":
+                            "anyOf":
+                              -
+                                "type": "string"
+                              -
+                                "type": "integer"
+                          "type": "array"
+                          "title": "Location"
+                        "msg":
+                          "type": "string"
+                          "title": "Message"
+                        "type":
+                          "type": "string"
+                          "title": "Error Type"
+                      "type": "object"
+                      "required":
+                        - "loc"
+                        - "msg"
+                        - "type"
+                      "title": "ValidationError"
+                    "type": "array"
+                    "title": "Detail"
+                "type": "object"
+                "title": "HTTPValidationError"
+"components":
+  "schemas":
+    "ApplicationResponse":
+      "properties":
+        "application_id":
+          "type": "integer"
+          "title": "Application Id"
+        "user_name":
+          "type": "string"
+          "title": "User Name"
+        "user_email":
+          "type": "string"
+          "title": "User Email"
+        "user_contact":
+          "anyOf":
+            -
+              "type": "string"
+            -
+              "type": "null"
+          "title": "User Contact"
+        "job_title":
+          "type": "string"
+          "title": "Job Title"
+        "company_name":
+          "type": "string"
+          "title": "Company Name"
+        "resume_path":
+          "type": "string"
+          "title": "Resume Path"
+        "skills":
+          "anyOf":
+            -
+              "type": "string"
+            -
+              "type": "null"
+          "title": "Skills"
+        "years_of_experience":
+          "anyOf":
+            -
+              "type": "integer"
+            -
+              "type": "null"
+          "title": "Years Of Experience"
+      "type": "object"
+      "required":
+        - "application_id"
+        - "user_name"
+        - "user_email"
+        - "user_contact"
+        - "job_title"
+        - "company_name"
+        - "resume_path"
+        - "skills"
+        - "years_of_experience"
+      "title": "ApplicationResponse"
+    "ApplyJobRequest":
+      "properties":
+        "user_id":
+          "type": "integer"
+          "title": "User Id"
+        "job_id":
+          "type": "integer"
+          "title": "Job Id"
+        "resume_id":
+          "type": "integer"
+          "title": "Resume Id"
+      "type": "object"
+      "required":
+        - "user_id"
+        - "job_id"
+        - "resume_id"
+      "title": "ApplyJobRequest"
+    "CreateJobRequest":
+      "properties":
+        "job_description":
+          "type": "string"
+          "title": "Job Description"
+        "job_title":
+          "type": "string"
+          "title": "Job Title"
+        "employment_type":
+          "type": "string"
+          "title": "Employment Type"
+        "company_name":
+          "type": "string"
+          "title": "Company Name"
+      "type": "object"
+      "required":
+        - "job_description"
+        - "job_title"
+        - "employment_type"
+        - "company_name"
+      "title": "CreateJobRequest"
+    "CreateUserRequest":
+      "properties":
+        "name":
+          "type": "string"
+          "title": "Name"
+        "email":
+          "type": "string"
+          "title": "Email"
+        "contact_number":
+          "anyOf":
+            -
+              "type": "string"
+            -
+              "type": "null"
+          "title": "Contact Number"
+      "type": "object"
+      "required":
+        - "name"
+        - "email"
+      "title": "CreateUserRequest"
+    "HTTPValidationError":
+      "properties":
+        "detail":
+          "items":
+            "properties":
+              "loc":
+                "items":
+                  "anyOf":
+                    -
+                      "type": "string"
+                    -
+                      "type": "integer"
+                "type": "array"
+                "title": "Location"
+              "msg":
+                "type": "string"
+                "title": "Message"
+              "type":
+                "type": "string"
+                "title": "Error Type"
+            "type": "object"
+            "required":
+              - "loc"
+              - "msg"
+              - "type"
+            "title": "ValidationError"
+          "type": "array"
+          "title": "Detail"
+      "type": "object"
+      "title": "HTTPValidationError"
+    "JobResponse":
+      "properties":
+        "job_id":
+          "type": "integer"
+          "title": "Job Id"
+        "job_description":
+          "type": "string"
+          "title": "Job Description"
+        "job_title":
+          "type": "string"
+          "title": "Job Title"
+        "employment_type":
+          "type": "string"
+          "title": "Employment Type"
+        "company_name":
+          "type": "string"
+          "title": "Company Name"
+      "type": "object"
+      "required":
+        - "job_id"
+        - "job_description"
+        - "job_title"
+        - "employment_type"
+        - "company_name"
+      "title": "JobResponse"
+    "ResumeAnalysisResponse":
+      "properties":
+        "status":
+          "type": "string"
+          "enum":
+            - "success"
+            - "error"
+          "title": "StatusEnum"
+          "description": "Status of the resume analysis request"
+        "message":
+          "type": "string"
+          "title": "Message"
+          "description": "Additional information about the analysis process"
+        "data":
+          "anyOf":
+            -
+              "properties":
+                "perc_match":
+                  "type": "integer"
+                  "title": "Perc Match"
+                  "description": "Percentage match between the job description and the resume (0-100)"
+                "matching_keywords":
+                  "items":
+                    "type": "string"
+                  "type": "array"
+                  "title": "Matching Keywords"
+                  "description": "List of important keywords or skills found in both the resume and job description"
+                "missing_keywords":
+                  "items":
+                    "type": "string"
+                  "type": "array"
+                  "title": "Missing Keywords"
+                  "description": "List of important keywords or skills from the job description missing in the resume"
+                "improvement_suggestions":
+                  "items":
+                    "type": "string"
+                  "type": "array"
+                  "title": "Improvement Suggestions"
+                  "description": "Specific suggestions to improve the resume for better alignment with the job description"
+                "profile_summary":
+                  "type": "string"
+                  "title": "Profile Summary"
+                  "description": "Concise profile summary of the candidate based on their entire resume"
+                "top_strengths":
+                  "items":
+                    "type": "string"
+                  "type": "array"
+                  "title": "Top Strengths"
+                  "description": "Top 3 strengths of the candidate relevant to the job description"
+                "areas_for_improvement":
+                  "items":
+                    "type": "string"
+                  "type": "array"
+                  "title": "Areas For Improvement"
+                  "description": "Top 3 areas for improvement or skills to develop for better job fit"
+                "ats_compatibility_score":
+                  "type": "integer"
+                  "title": "Ats Compatibility Score"
+                  "description": "Score for how well the resume is formatted for ATS systems (0-100)"
+                "experience_level_match":
+                  "type": "string"
+                  "title": "Experience Level Match"
+                  "description": "Assessment of how well the candidate's experience level matches the job requirements"
+              "type": "object"
+              "required":
+                - "perc_match"
+                - "matching_keywords"
+                - "missing_keywords"
+                - "improvement_suggestions"
+                - "profile_summary"
+                - "top_strengths"
+                - "areas_for_improvement"
+                - "ats_compatibility_score"
+                - "experience_level_match"
+              "title": "ResumeScore"
+            -
+              "type": "null"
+          "description": "Detailed resume analysis results"
+      "type": "object"
+      "required":
+        - "status"
+        - "message"
+        - "data"
+      "title": "ResumeAnalysisResponse"
+    "ResumeResponse":
+      "properties":
+        "resume_id":
+          "type": "integer"
+          "title": "Resume Id"
+        "user_id":
+          "type": "integer"
+          "title": "User Id"
+        "resume_path":
+          "type": "string"
+          "title": "Resume Path"
+        "years_of_experience":
+          "anyOf":
+            -
+              "type": "integer"
+            -
+              "type": "null"
+          "title": "Years Of Experience"
+        "education":
+          "anyOf":
+            -
+              "type": "string"
+            -
+              "type": "null"
+          "title": "Education"
+        "skills":
+          "anyOf":
+            -
+              "type": "string"
+            -
+              "type": "null"
+          "title": "Skills"
+        "work_experience":
+          "anyOf":
+            -
+              "type": "string"
+            -
+              "type": "null"
+          "title": "Work Experience"
+      "type": "object"
+      "required":
+        - "resume_id"
+        - "user_id"
+        - "resume_path"
+        - "years_of_experience"
+        - "education"
+        - "skills"
+        - "work_experience"
+      "title": "ResumeResponse"
+    "ResumeScore":
+      "properties":
+        "perc_match":
+          "type": "integer"
+          "title": "Perc Match"
+          "description": "Percentage match between the job description and the resume (0-100)"
+        "matching_keywords":
+          "items":
+            "type": "string"
+          "type": "array"
+          "title": "Matching Keywords"
+          "description": "List of important keywords or skills found in both the resume and job description"
+        "missing_keywords":
+          "items":
+            "type": "string"
+          "type": "array"
+          "title": "Missing Keywords"
+          "description": "List of important keywords or skills from the job description missing in the resume"
+        "improvement_suggestions":
+          "items":
+            "type": "string"
+          "type": "array"
+          "title": "Improvement Suggestions"
+          "description": "Specific suggestions to improve the resume for better alignment with the job description"
+        "profile_summary":
+          "type": "string"
+          "title": "Profile Summary"
+          "description": "Concise profile summary of the candidate based on their entire resume"
+        "top_strengths":
+          "items":
+            "type": "string"
+          "type": "array"
+          "title": "Top Strengths"
+          "description": "Top 3 strengths of the candidate relevant to the job description"
+        "areas_for_improvement":
+          "items":
+            "type": "string"
+          "type": "array"
+          "title": "Areas For Improvement"
+          "description": "Top 3 areas for improvement or skills to develop for better job fit"
+        "ats_compatibility_score":
+          "type": "integer"
+          "title": "Ats Compatibility Score"
+          "description": "Score for how well the resume is formatted for ATS systems (0-100)"
+        "experience_level_match":
+          "type": "string"
+          "title": "Experience Level Match"
+          "description": "Assessment of how well the candidate's experience level matches the job requirements"
+      "type": "object"
+      "required":
+        - "perc_match"
+        - "matching_keywords"
+        - "missing_keywords"
+        - "improvement_suggestions"
+        - "profile_summary"
+        - "top_strengths"
+        - "areas_for_improvement"
+        - "ats_compatibility_score"
+        - "experience_level_match"
+      "title": "ResumeScore"
+    "StatusEnum":
+      "type": "string"
+      "enum":
+        - "success"
+        - "error"
+      "title": "StatusEnum"
+    "UploadResumeRequest":
+      "properties":
+        "user_id":
+          "type": "integer"
+          "title": "User Id"
+        "resume_body":
+          "type": "string"
+          "format": "binary"
+          "title": "Resume Body"
+        "file_name":
+          "type": "string"
+          "title": "File Name"
+      "type": "object"
+      "required":
+        - "user_id"
+        - "resume_body"
+        - "file_name"
+      "title": "UploadResumeRequest"
+    "UserResponse":
+      "properties":
+        "user_id":
+          "type": "integer"
+          "title": "User Id"
+        "name":
+          "type": "string"
+          "title": "Name"
+        "email":
+          "type": "string"
+          "title": "Email"
+        "contact_number":
+          "anyOf":
+            -
+              "type": "string"
+            -
+              "type": "null"
+          "title": "Contact Number"
+      "type": "object"
+      "required":
+        - "user_id"
+        - "name"
+        - "email"
+      "title": "UserResponse"
+    "ValidationError":
+      "properties":
+        "loc":
+          "items":
+            "anyOf":
+              -
+                "type": "string"
+              -
+                "type": "integer"
+          "type": "array"
+          "title": "Location"
+        "msg":
+          "type": "string"
+          "title": "Message"
+        "type":
+          "type": "string"
+          "title": "Error Type"
+      "type": "object"
+      "required":
+        - "loc"
+        - "msg"
+        - "type"
+      "title": "ValidationError"
