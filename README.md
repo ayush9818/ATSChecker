@@ -19,14 +19,14 @@
 
 ### Database Design
 
-
 ![db_design](assets/database-schema.png)
 
 ### Cloud Architecture 
 ![cloud_arch](assets/architecture.png)
 
+### API Specs
 
-
+![apis](assets/api_specs.png)
 
 
 ## Project Setup Guide
